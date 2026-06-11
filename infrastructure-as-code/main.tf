@@ -1,11 +1,15 @@
-
-
-variable "files" {
-  default = 5
+locals {
+  files = {
+    "0" = "file0.txt"
+    "2" = "file2.txt"
+    "3" = "file3.txt"
+    "4" = "file4.txt"
+  }
 }
 
 resource "local_file" "foo" {
-  count    = var.files
-  content  = "# Some content for file ${count.index}"
-  filename = "file${count.index}.txt"
+  for_each = local.files
+
+  content  = "# Some content for file ${each.key}"
+  filename = each.value
 }

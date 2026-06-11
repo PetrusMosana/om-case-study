@@ -1,0 +1,21 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: example-nodejs-template
+  title: Example Custom Action Template
+  description: Runs only the custom action
+spec:
+  owner: user:guest
+  type: service
+
+  parameters: []
+
+  steps:
+    - id: custom-action
+      name: Run custom action
+      action: my:custom:action
+
+  output:
+    text:
+      - title: Custom action completed
+        content: The custom action created a file in the temporary workspace.
